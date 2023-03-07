@@ -8,3 +8,9 @@ void print_provinces()
     //TODO:: Write a for loop that iterates over the PROVINCES array and prints out how many letters is contained in each
 
 }
+
+
+        province_size = sizeof(provinces)/sizeof(PROVINCES[0]);
+        for(int i = 0; i< ?; i++){
+
+        }
