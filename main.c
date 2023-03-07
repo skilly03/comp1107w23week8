@@ -46,7 +46,8 @@ int main(int argc, char *argv[])
 
     int selection = get_int("What is your selection?\n");
 
-    //TODO:: Write a 10 case switch statement to run the appropriate function.
+    // TODO:: Write a 11 case switch statement to run the appropriate function.
+
 
     return 0;
 }
@@ -54,33 +55,32 @@ int main(int argc, char *argv[])
 int modulo_testing()
 {
 
-    //TODO:: Get 2 ints and run the modulo calculation
-    //TODO:: Print out the result using the commented out printf
+    // TODO:: Get 2 ints and run the modulo calculation
+    // TODO:: Print out the result using the commented out printf
 
-    //printf("The remainder of %d divided by %d is %d", x, y, modulo);
+    // printf("The remainder of %d divided by %d is %d", x, y, modulo);
     return 1;
 }
 
 int integer_division_testing()
 {
 
-    //TODO:: Get 2 ints and run the division calculation
-    //TODO:: Print out the result using the commented out printf
+    // TODO:: Get 2 ints and run the division calculation
+    // TODO:: Print out the result using the commented out printf
 
-    //printf("The result of %d divided by %d is %d", x, y, result);
+    // printf("The result of %d divided by %d is %d", x, y, result);
 
-    return result;
+    // return result;
 }
 
 int float_cast_to_integer_division_testing()
 {
 
-    //TODO:: Get 2 FLOATS and run the division calculation
-    //TODO:: Print out the result using the commented out printf
-    //You must use an explicit cast ie: (int)
+    // TODO:: Get 2 FLOATS and run the division calculation
+    // TODO:: Print out the result using the commented out printf
+    // You must use an explicit cast ie: (int)
 
-
-    //printf("The result of %d divided by %d is %f, once cast to an int the result is %d\n", x, y, result, int_result);
+    // printf("The result of %d divided by %d is %f, once cast to an int the result is %d\n", x, y, result, int_result);
 
     return 1;
 }
@@ -95,27 +95,27 @@ float for_loop_testing()
 
     bool is_positive = get_char("Should the counter decrement instead of incrementing? y / n \n") == 'n' ? true : false;
 
-   //TODO:: Write a for loop that increments a counter the appropriate amount of times by a custom amount
-   //TODO:: Write an if check that will optionally decrement instead of incrementing.
+    // TODO:: Write a for loop that increments a counter the appropriate amount of times by a custom amount
+    // TODO:: Write an if check that will optionally decrement instead of incrementing.
 
-    //printf("The final value of the counter is %f\n", counter);
+    // printf("The final value of the counter is %f\n", counter);
 
     return counter;
 }
 
 float integer_float_addition()
 {
-    //Get an int and a float and add them together, make sure the result comes out as a float
+    // Get an int and a float and add them together, make sure the result comes out as a float
 
-    //printf("The result of %d plus %f is %f", x, y, result);
+    // printf("The result of %d plus %f is %f", x, y, result);
 
     return 1.0;
 }
 
 string print_ascii_string_value()
 {
-    //TODO:: Write a while loop that takes a string that you query the user for then print out each letter with their matching ascii value
-    //TODO:: Also print out the characters position in the string  
+    // TODO:: Write a while loop that takes a string that you query the user for then print out each letter with their matching ascii value
+    // TODO:: Also print out the characters position in the string
 }
 
 void change_machine()
@@ -126,27 +126,25 @@ void change_machine()
                         0,
                         0};
 
-    //TODO: Get a float from the user and return the change needed for that amount IE: 2.95
-    //      returns 3 quarters and 2 dimes.
+    // TODO: Get a float from the user and return the change needed for that amount IE: 2.95
+    //       returns 3 quarters and 2 dimes.
 
-    //Optional TODO::The government makes businesses round up the nickels for numbers ending in 3 and 8.
-    
+    // Optional TODO::The government makes businesses round up the nickels for numbers ending in 3 and 8.
 }
 
 string rock_paper_scissors()
 {
-    //TODO:: Query the user for an int between 1 and 3 for their choice of rock, paper scissors.
-    //      Use a do while loop to guarantee their input is valid
+    // TODO:: Query the user for an int between 1 and 3 for their choice of rock, paper scissors.
+    //       Use a do while loop to guarantee their input is valid
 
     // Generates a pseudo random int between 0 and 29
     // Use this to determine the "AI" choice
     int random = rand() % 30;
 
-   //TODO:: Write the game logic with if checks and determine who won
-
+    // TODO:: Write the game logic with if checks and determine who won
 }
 
-//Convenience function you can call
+// Convenience function you can call
 string rock_paper_scissors_choices(int choice)
 {
     // No need to break out of cases when you return since no code runs after that.
@@ -172,32 +170,32 @@ void vigenere_cipher()
 
     string key = get_string("What is your encoding key? ");
 
-    //TODO:: Write the for loop for the vigenere cipher
+    // TODO:: Write the for loop for the vigenere cipher
 }
 
-//Convenice function you can call
+// Convenice function you can call
 char vigenere_offset_letter(char msgLtr, char keyLtr)
 {
-    //Determine if you need to offset by 97 or 65 to make the choice between 0 for 'a' and 25 for 'z' 
+    // Determine if you need to offset by 97 or 65 to make the choice between 0 for 'a' and 25 for 'z'
     int capital_offset = islower(msgLtr) ? 97 : 65;
 
-    //The key offset doesn't matter because you only offset by the characters value, doesn't matter if its capital
+    // The key offset doesn't matter because you only offset by the characters value, doesn't matter if its capital
     int key_offset = tolower(keyLtr) - 97;
 
-    //The letters position between 0 and 25
+    // The letters position between 0 and 25
     int ltr_position = msgLtr - capital_offset;
 
-    //Modulo the offset by 26 in case the value is more than 25 and we need to circle back,
-    //Re-add the capital offset so the shifted message letter regains it's original cases
+    // Modulo the offset by 26 in case the value is more than 25 and we need to circle back,
+    // Re-add the capital offset so the shifted message letter regains it's original cases
     ltr_position = (ltr_position + key_offset) % 26 + capital_offset;
 
     return (char)ltr_position;
 }
 
-//Convenice function you can call
+// Convenice function you can call
 bool is_in_ascii_range(char ltr)
 {
-    //Only need to check if between 96 and 123 if you tolower the char
+    // Only need to check if between 96 and 123 if you tolower the char
     int lowerLtr = tolower(ltr);
 
     if (lowerLtr > 96 && lowerLtr < 123)
