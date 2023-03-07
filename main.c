@@ -40,14 +40,39 @@ int main(int argc, char *argv[])
     printf("4. Integer and Float Addition \n");
     printf("5. Print ASCII values of letters in a string\n");
     printf("6. Print the provinces of Canada\n");
-    printf("8. Change Machine\n");
-    printf("9. Rock Paper Scissors\n");
-    printf("10. Vigenere Cipher\n");
+    printf("7. Change Machine\n");
+    printf("8. Rock Paper Scissors\n");
+    printf("9. Vigenere Cipher\n");
 
     int selection = get_int("What is your selection?\n");
 
     // TODO:: Write a 11 case switch statement to run the appropriate function.
-
+    switch (selection)
+    {
+    case 0:
+        modulo_testing();
+        break;
+    case 1:
+        integer_division_testing();
+        break;
+    case 2:
+        float_cast_to_integer_division_testing();
+        break;
+    case 3:
+        for_loop_testing();
+        break;
+    case 4:
+        integer_float_addition();
+        break;
+    case 5:
+        print_ascii_string_value();
+        break;
+    case 6:
+        print_provinces();
+        break;
+    default:
+        break;
+    }
 
     return 0;
 }
@@ -57,9 +82,13 @@ int modulo_testing()
 
     // TODO:: Get 2 ints and run the modulo calculation
     // TODO:: Print out the result using the commented out printf
+    int x = get_int("Enter the dividend you want the remainder of\n");
+    int y = get_int("Enter the divider you want the remainder of\n");
 
-    // printf("The remainder of %d divided by %d is %d", x, y, modulo);
-    return 1;
+    int modulo = x % y;
+
+    printf("The remainder of %d divided by %d is %d\n", x, y, modulo);
+    return modulo;
 }
 
 int integer_division_testing()
@@ -67,10 +96,14 @@ int integer_division_testing()
 
     // TODO:: Get 2 ints and run the division calculation
     // TODO:: Print out the result using the commented out printf
+    int x = get_int("Enter the dividend you want the remainder of\n");
+    int y = get_int("Enter the divider you want the remainder of\n");
 
-    // printf("The result of %d divided by %d is %d", x, y, result);
+    int result = x / y;
 
-    // return result;
+    printf("The result of %d divided by %d is %d", x, y, result);
+
+    return result;
 }
 
 int float_cast_to_integer_division_testing()
@@ -79,8 +112,14 @@ int float_cast_to_integer_division_testing()
     // TODO:: Get 2 FLOATS and run the division calculation
     // TODO:: Print out the result using the commented out printf
     // You must use an explicit cast ie: (int)
+    float x = get_float("Enter the dividend you want the remainder of\n");
+    float y = get_float("Enter the divider you want the remainder of\n");
 
-    // printf("The result of %d divided by %d is %f, once cast to an int the result is %d\n", x, y, result, int_result);
+    float result = x / y;
+
+    int int_result = (int)result;
+
+    printf("The result of %f divided by %f is %f, once cast to an int the result is %d\n", x, y, result, int_result);
 
     return 1;
 }
@@ -95,27 +134,59 @@ float for_loop_testing()
 
     bool is_positive = get_char("Should the counter decrement instead of incrementing? y / n \n") == 'n' ? true : false;
 
-    // TODO:: Write a for loop that increments a counter the appropriate amount of times by a custom amount
-    // TODO:: Write an if check that will optionally decrement instead of incrementing.
+    // If is not positive then make your increment negative
+    if (!is_positive)
+    {
+        increment = increment * -1;
+    }
 
-    // printf("The final value of the counter is %f\n", counter);
+    // This will run the same amount of times as the int specified in loop_count
+    for (int iterator = 0; iterator < loop_count; iterator++)
+    {
+        // Update the value of counter every time the loop runs
+        counter = counter + increment;
+    }
+
+    printf("The final value of the counter is %f\n", counter);
 
     return counter;
 }
 
 float integer_float_addition()
 {
-    // Get an int and a float and add them together, make sure the result comes out as a float
+    // TODO:: Get an int and a float and add them together, make sure the result comes out as a float
+    //  TODO:: Get 2 FLOATS and run the division calculation
+    //  TODO:: Print out the result using the commented out printf
+    //  You must use an explicit cast ie: (int)
+    int x = get_int("Enter an integer you want summed\n");
+    float y = get_float("Enter an float you want summed\n");
 
-    // printf("The result of %d plus %f is %f", x, y, result);
+    float result = x + y;
+    printf("The result of %d plus %f is %f", x, y, result);
 
     return 1.0;
 }
 
 string print_ascii_string_value()
 {
-    // TODO:: Write a while loop that takes a string that you query the user for then print out each letter with their matching ascii value
+    // TODO:: Write a while loop that takes a string that you query from the user
+    //        then print out each letter with their matching ascii value
     // TODO:: Also print out the characters position in the string
+    string str = get_string("What string do you want to know the ASCII values of the letters of?");
+
+    int strSize = strlen(str);
+
+    int i = 0;
+
+    // While loop will run until the iterator i is equal to the string length
+    while (i < strSize)
+    {
+        // The first char of str can be accessed with str[0];
+        //  printf statement for each letter
+        int asciiVal = str[i];
+        printf("The char at position %d is %c and the ASCII value is %d\n", i, str[i], str[i]);
+        i++;
+    }
 }
 
 void change_machine()
