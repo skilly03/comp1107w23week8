@@ -31,6 +31,7 @@ char vigenere_offset_letter(char msgLtr, char keyLtr);
 
 int main(int argc, char *argv[])
 {
+    string testString = "hey I'm observable";
 
     printf("Choose one of the following options:\n");
     printf("0. Modulo Calculator\n");
@@ -70,6 +71,8 @@ int main(int argc, char *argv[])
     case 6:
         print_provinces();
         break;
+    case 8:
+        rock_paper_scissors();
     default:
         break;
     }
@@ -184,7 +187,7 @@ string print_ascii_string_value()
         // The first char of str can be accessed with str[0];
         //  printf statement for each letter
         int asciiVal = str[i];
-        printf("The char at position %d is %c and the ASCII value is %d\n", i, str[i], str[i]);
+        printf("The char at position %d is %c and the ASCII value is %d\n", i, str[i], asciiVal);
         i++;
     }
 }
@@ -204,13 +207,26 @@ void change_machine()
 }
 
 string rock_paper_scissors()
-{
+{   
     // TODO:: Query the user for an int between 1 and 3 for their choice of rock, paper scissors.
     //       Use a do while loop to guarantee their input is valid
+
+    
+    int number_choice;
+    int ai_number_choice;
+    do{
+        number_choice = get_int("Make a choice:\n 1.Rock\n 2.Paper\n 3.Scisors\n");
+    }while(number_choice> 0 && number_choice < 4);
+
+    string ai_choice = rock_paper_scissors_choices(ai_number_choice);
+    string choice = rock_paper_scissors_choices(number_choice);
+
 
     // Generates a pseudo random int between 0 and 29
     // Use this to determine the "AI" choice
     int random = rand() % 30;
+
+    ai_number_choice = (random + 10) / 10 ;
 
     // TODO:: Write the game logic with if checks and determine who won
 }

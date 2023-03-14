@@ -12,5 +12,7 @@ void print_provinces()
 
     for (int i = 0; i < province_size; i++)
     {
+        int province_letter_count = strlen(PROVINCES[i]);
+        printf("%s has %d characters.\n", PROVINCES[i], province_letter_count);
     }
 }
