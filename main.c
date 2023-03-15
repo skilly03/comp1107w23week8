@@ -4,6 +4,7 @@
 #include "canada.h"
 #include <math.h>
 #include <ctype.h>
+#include <time.h>
 
 int modulo_testing();
 
@@ -29,6 +30,8 @@ bool is_in_ascii_range(char ltr);
 
 char vigenere_offset_letter(char msgLtr, char keyLtr);
 
+void mario_wins_level();
+
 int main(int argc, char *argv[])
 {
     string testString = "hey I'm observable";
@@ -44,6 +47,7 @@ int main(int argc, char *argv[])
     printf("7. Change Machine\n");
     printf("8. Rock Paper Scissors\n");
     printf("9. Vigenere Cipher\n");
+    printf("10. Mario wins a level\n");
 
     int selection = get_int("What is your selection?\n");
 
@@ -73,6 +77,12 @@ int main(int argc, char *argv[])
         break;
     case 8:
         rock_paper_scissors();
+        break;
+    case 9:
+        vigenere_cipher();
+        break;
+    case 10:
+        mario_wins_level();
     default:
         break;
     }
@@ -214,21 +224,83 @@ string rock_paper_scissors()
     
     int number_choice;
     int ai_number_choice;
+    
     do{
         number_choice = get_int("Make a choice:\n 1.Rock\n 2.Paper\n 3.Scisors\n");
-    }while(number_choice> 0 && number_choice < 4);
+        // While the number choice is smaller than 0 or the number choice is greater than 4 keep asking,
+        // If both of these are false then we can stop looping.
+    }while(number_choice < 0 || number_choice > 4);
 
-    string ai_choice = rock_paper_scissors_choices(ai_number_choice);
-    string choice = rock_paper_scissors_choices(number_choice);
+
 
 
     // Generates a pseudo random int between 0 and 29
     // Use this to determine the "AI" choice
+    srand ( time(NULL) ); 
     int random = rand() % 30;
 
     ai_number_choice = (random + 10) / 10 ;
 
+    string ai_choice = rock_paper_scissors_choices(ai_number_choice);
+    string choice = rock_paper_scissors_choices(number_choice);
+
     // TODO:: Write the game logic with if checks and determine who won
+
+    if (choice == ai_choice)
+    {
+        printf("Draw! You both played %s!", choice);
+        return choice;
+    }
+
+    bool won;
+    if (choice == "paper")
+    {
+        if (ai_choice == "scissors")
+        {
+            won = false;
+        }
+        else
+        {
+            won = true;
+        }
+    }
+
+    if (choice == "paper")
+    {
+        if (ai_choice == "scissors")
+        {
+            won = false;
+        }
+        else
+        {
+            won = true;
+        }
+    }
+    if (choice == "scissors")
+    {
+        if (ai_choice == "rock")
+        {
+            won = false;
+        }
+        else
+        {
+            won = true;
+        }
+    }
+
+    if (won)
+    {
+        printf("You won! You chose %s, and the AI chose %s", choice, ai_choice);
+    }
+    else
+    {
+
+        printf("You lost! You chose %s, and the AI chose %s", choice, ai_choice);
+    }
+
+    return choice;
+
+
 }
 
 // Convenience function you can call
@@ -258,22 +330,44 @@ void vigenere_cipher()
     string key = get_string("What is your encoding key? ");
 
     // TODO:: Write the for loop for the vigenere cipher
+     // strlen does not return the length including the terminating character
+    int message_length = strlen(message) + 1;
+
+    int keyLength = strlen(key);
+
+    char encoded_message[message_length];
+
+    for (int i = 0; i < message_length; i++)
+    {
+        if (is_in_ascii_range(message[i]) && is_in_ascii_range(key[i % keyLength]))
+        {
+            encoded_message[i] = vigenere_offset_letter(message[i], key[i % keyLength]);
+        }
+        else
+        {
+            encoded_message[i] = message[i];
+        }
+    }
+
+    printf("Your encoded message is %s\n", encoded_message);
+
 }
 
-// Convenice function you can call
+// Convenience function you can call
 char vigenere_offset_letter(char msgLtr, char keyLtr)
 {
     // Determine if you need to offset by 97 or 65 to make the choice between 0 for 'a' and 25 for 'z'
+    // Reminder upercase 'A' is ASCII 65 and lowercase 'a' is 97
     int capital_offset = islower(msgLtr) ? 97 : 65;
 
-    // The key offset doesn't matter because you only offset by the characters value, doesn't matter if its capital
+    // The key offset doesn't matter because you only offset by the characters value, doesn't matter if it's a capital letter
     int key_offset = tolower(keyLtr) - 97;
 
     // The letters position between 0 and 25
     int ltr_position = msgLtr - capital_offset;
 
     // Modulo the offset by 26 in case the value is more than 25 and we need to circle back,
-    // Re-add the capital offset so the shifted message letter regains it's original cases
+    // Re-add the capital offset so the shifted message letter regains it's original case
     ltr_position = (ltr_position + key_offset) % 26 + capital_offset;
 
     return (char)ltr_position;
@@ -293,4 +387,28 @@ bool is_in_ascii_range(char ltr)
     {
         return false;
     }
+}
+
+void mario_wins_level(){
+    /**If you have ever played Super Mario Bros., Mario has to climb stairs so he can take the flag down
+     * the flag pole at the end of a level. You can see this here: https://www.youtube.com/watch?v=uEDoNp_lQjA
+     * you want to write code that will ask how many stairs Mario should climb to finish the level. From this 
+     * input you need to write code that will print the right pattern. 
+     * Example: if the user chooses 6 the pattern will be 
+     *          |>
+     *     ##   |
+     *    ###   |
+     *   ####   |
+     *  #####   |
+     * ######   |
+     *#######   #
+     *
+     * Extra example: user picks 2
+     *       |>
+     *  ##   |
+     * ###   #
+     * 
+     * Make sure to check the range! The stairs can only be so low and the console can only print so many lines! **/
+
+    get_int("How many stairs should mario climb to finish the level?");
 }
