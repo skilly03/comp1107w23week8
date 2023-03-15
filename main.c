@@ -331,7 +331,7 @@ void vigenere_cipher()
 
     // TODO:: Write the for loop for the vigenere cipher
      // strlen does not return the length including the terminating character
-    int message_length = strlen(message) + 1;
+    int message_length = strlen(message) + 1; //adding one for the lack of terminating character.
 
     int keyLength = strlen(key);
 
@@ -339,6 +339,7 @@ void vigenere_cipher()
 
     for (int i = 0; i < message_length; i++)
     {
+        //Using modulo with the key's length keeps the index in a range that exists for the key's char array.
         if (is_in_ascii_range(message[i]) && is_in_ascii_range(key[i % keyLength]))
         {
             encoded_message[i] = vigenere_offset_letter(message[i], key[i % keyLength]);
