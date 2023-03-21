@@ -411,5 +411,23 @@ void mario_wins_level(){
      * 
      * Make sure to check the range! The stairs can only be so low and the console can only print so many lines! **/
 
-    get_int("How many stairs should mario climb to finish the level?");
+  int stairs =  get_int("How many stairs should mario climb to finish the level?");
+  int stairs_copy = stairs;
+   for (int i = 0; i <= stairs; i++)
+   {
+     for(int j = 0; j <= stairs_copy; j++)
+     {
+        printf(" ");
+     }
+     for(int j = 0; j <= i; j++)
+     {
+        printf("#");
+     }     
+     printf("\n");
+     stairs_copy--;     
+   }
+   
+   
+    
+
 }
